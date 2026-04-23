@@ -7,9 +7,9 @@
 
 <style>
 body {
-    font-family: Arial;
     margin: 0;
-    background: #fafafa;
+    font-family: Arial, sans-serif;
+    background: #f4f4f4;
 }
 
 header {
@@ -19,12 +19,26 @@ header {
     padding: 20px;
 }
 
-h1 {
+header h1 {
     color: orange;
+    margin: 0;
 }
 
-.container {
+.info {
+    text-align: center;
+    padding: 10px;
+    background: #fff;
+    font-size: 14px;
+}
+
+.section {
     padding: 15px;
+}
+
+.section h2 {
+    background: orange;
+    padding: 10px;
+    margin: 10px 0;
 }
 
 .card {
@@ -32,7 +46,7 @@ h1 {
     margin-bottom: 15px;
     border-radius: 10px;
     overflow: hidden;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
 }
 
 .card img {
@@ -46,8 +60,8 @@ h1 {
 }
 
 .title {
-    font-weight: bold;
     font-size: 18px;
+    font-weight: bold;
 }
 
 .desc {
@@ -67,39 +81,122 @@ h1 {
 
 <header>
     <h1>Good Essen Thai</h1>
-    <p>Sonnenwall 25 • Duisburg</p>
+    <p>Imbiss</p>
 </header>
 
-<div class="container">
-
-<!-- Gericht 1 -->
-<div class="card">
-    <img src="https://images.unsplash.com/photo-1604908176997-4319c7f7ef7d">
-    <div class="card-content">
-        <div class="title">Tom Yam Goong</div>
-        <div class="desc">Scharfe Garnelensuppe mit Zitronengras, Champignons und Koriander.</div>
-        <div class="price">3,90€</div>
-    </div>
+<div class="info">
+📍 Sonnenwall 25, Duisburg<br>
+📞 0203-36980937<br>
+🕒 Mo–Sa: 11:30–21:00 | So: 16:00–21:00
 </div>
 
-<!-- Gericht 2 -->
+<!-- VORSPEISEN -->
+<div class="section">
+<h2>🥢 Vorspeisen</h2>
+
 <div class="card">
-    <img src="https://images.unsplash.com/photo-1550547660-d9450f859349">
-    <div class="card-content">
-        <div class="title">Pad Thai Garnelen</div>
-        <div class="desc">Gebratene Reisnudeln mit Garnelen, Ei, Erdnüssen und Sojasprossen.</div>
-        <div class="price">6,90€</div>
-    </div>
+<img src="https://images.unsplash.com/photo-1604908176997-4319c7f7ef7d">
+<div class="card-content">
+<div class="title">Frühlingsrollen</div>
+<div class="desc">Knusprige Rollen mit Gemüse oder Hähnchen, serviert mit süß-saurer Soße.</div>
+<div class="price">2,50€</div>
+</div>
 </div>
 
-<!-- Gericht 3 -->
 <div class="card">
-    <img src="https://images.unsplash.com/photo-1562967916-eb82221dfb36">
-    <div class="card-content">
-        <div class="title">Gebratener Reis mit Hähnchen</div>
-        <div class="desc">Reis mit Hähnchen, Ei und frischem Gemüse.</div>
-        <div class="price">5,90€</div>
-    </div>
+<img src="https://images.unsplash.com/photo-1550547660-d9450f859349">
+<div class="card-content">
+<div class="title">Satay Spieße</div>
+<div class="desc">Gegrillte Hähnchenspieße mit cremiger Erdnusssauce.</div>
+<div class="price">2,50€</div>
+</div>
+</div>
+
+</div>
+
+<!-- SUPPEN -->
+<div class="section">
+<h2>🍜 Suppen</h2>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1562967916-eb82221dfb36">
+<div class="card-content">
+<div class="title">Tom Yam Goong</div>
+<div class="desc">Scharfe Garnelensuppe mit Zitronengras, Chili und Koriander.</div>
+<div class="price">3,90€</div>
+</div>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1604908811717-3a03cfa2d2a3">
+<div class="card-content">
+<div class="title">Tom Kha Gai</div>
+<div class="desc">Milde Kokossuppe mit Hähnchen und Champignons.</div>
+<div class="price">2,90€</div>
+</div>
+</div>
+
+</div>
+
+<!-- HAUPTGERICHTE -->
+<div class="section">
+<h2>🍛 Hauptgerichte</h2>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1617093727343-374698b1b08d">
+<div class="card-content">
+<div class="title">Pad Thai Garnelen</div>
+<div class="desc">Gebratene Reisnudeln mit Garnelen, Ei, Erdnüssen und Sojasprossen.</div>
+<div class="price">6,90€</div>
+</div>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1604908177522-472cfa1d65c1">
+<div class="card-content">
+<div class="title">Gebratener Reis mit Hähnchen</div>
+<div class="desc">Reis mit Hähnchen, Gemüse und Ei, typisch Thai gewürzt.</div>
+<div class="price">5,90€</div>
+</div>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1627308595229-7830a5c91f9f">
+<div class="card-content">
+<div class="title">Massaman Curry Rind</div>
+<div class="desc">Rindfleisch in cremigem Curry mit Kartoffeln und Erdnüssen.</div>
+<div class="price">7,90€</div>
+</div>
+</div>
+
+</div>
+
+<!-- GARNELEN -->
+<div class="section">
+<h2>🍤 Garnelen</h2>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1589308078053-f0f1c4c41e38">
+<div class="card-content">
+<div class="title">Thai Curry Garnelen</div>
+<div class="desc">Garnelen in rotem Curry mit Kokosmilch und Gemüse.</div>
+<div class="price">9,90€</div>
+</div>
+</div>
+
+</div>
+
+<!-- NACHTISCH -->
+<div class="section">
+<h2>🍰 Nachtisch</h2>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1606313564200-e75d5e30476c">
+<div class="card-content">
+<div class="title">Banane mit Honig</div>
+<div class="desc">Frittierte Banane mit süßem Honig.</div>
+<div class="price">2,60€</div>
+</div>
 </div>
 
 </div>
