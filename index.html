@@ -7,9 +7,9 @@
 
 <style>
 body {
+    font-family: Arial;
     margin: 0;
-    font-family: Arial, sans-serif;
-    background: #fff;
+    background: #fafafa;
 }
 
 header {
@@ -19,36 +19,46 @@ header {
     padding: 20px;
 }
 
-header h1 {
+h1 {
     color: orange;
 }
 
-.info {
-    background: #f5f5f5;
-    padding: 15px;
-    text-align: center;
-}
-
-.section {
+.container {
     padding: 15px;
 }
 
-.section h2 {
-    background: orange;
-    padding: 10px;
-    margin: 0;
+.card {
+    background: white;
+    margin-bottom: 15px;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
-.item {
-    display: flex;
-    justify-content: space-between;
+.card img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+}
+
+.card-content {
     padding: 10px;
-    border-bottom: 1px solid #ddd;
+}
+
+.title {
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.desc {
+    font-size: 14px;
+    color: #555;
 }
 
 .price {
     color: red;
     font-weight: bold;
+    margin-top: 5px;
 }
 </style>
 </head>
@@ -57,118 +67,40 @@ header h1 {
 
 <header>
     <h1>Good Essen Thai</h1>
-    <p>Imbiss</p>
+    <p>Sonnenwall 25 • Duisburg</p>
 </header>
 
-<div class="info">
-    📍 Sonnenwall 25, Duisburg<br>
-    📞 0203-36980937<br>
-    🕒 Mo–Sa: 11:30–21:00 | So: 16:00–21:00
+<div class="container">
+
+<!-- Gericht 1 -->
+<div class="card">
+    <img src="https://images.unsplash.com/photo-1604908176997-4319c7f7ef7d">
+    <div class="card-content">
+        <div class="title">Tom Yam Goong</div>
+        <div class="desc">Scharfe Garnelensuppe mit Zitronengras, Champignons und Koriander.</div>
+        <div class="price">3,90€</div>
+    </div>
 </div>
 
-<!-- VORSPEISE -->
-<div class="section">
-<h2>🥢 Vorspeisen</h2>
-
-<div class="item"><span>Sa Teh Gai</span><span class="price">2,50€</span></div>
-<div class="item"><span>Gemüse Frühlingsrolle</span><span class="price">2,20€</span></div>
-<div class="item"><span>Popia Thood</span><span class="price">2,50€</span></div>
-<div class="item"><span>Wan Tan</span><span class="price">3,80€</span></div>
-<div class="item"><span>Pak Chub Pang Thood</span><span class="price">3,50€</span></div>
-<div class="item"><span>Gung Haom Pha</span><span class="price">3,50€</span></div>
-<div class="item"><span>Krabbenchips</span><span class="price">1,50€</span></div>
-<div class="item"><span>Pu Thod</span><span class="price">2,50€</span></div>
-<div class="item"><span>Nüa-Dad Deav</span><span class="price">3,50€</span></div>
-
+<!-- Gericht 2 -->
+<div class="card">
+    <img src="https://images.unsplash.com/photo-1550547660-d9450f859349">
+    <div class="card-content">
+        <div class="title">Pad Thai Garnelen</div>
+        <div class="desc">Gebratene Reisnudeln mit Garnelen, Ei, Erdnüssen und Sojasprossen.</div>
+        <div class="price">6,90€</div>
+    </div>
 </div>
 
-<!-- SUPPEN -->
-<div class="section">
-<h2>🍜 Suppen</h2>
-
-<div class="item"><span>Tom Yam Goong</span><span class="price">3,90€</span></div>
-<div class="item"><span>Tom Kha Gai</span><span class="price">2,90€</span></div>
-<div class="item"><span>Tai-Chi Suppe</span><span class="price">2,50€</span></div>
-<div class="item"><span>Tom Yam Gai</span><span class="price">2,90€</span></div>
-<div class="item"><span>Sauer-Scharfe Suppe</span><span class="price">1,80€</span></div>
-<div class="item"><span>Wan Tan Suppe</span><span class="price">2,50€</span></div>
-<div class="item"><span>Vegetarische Tofu Suppe</span><span class="price">2,50€</span></div>
-<div class="item"><span>Kung Fu Suppe</span><span class="price">2,80€</span></div>
-
+<!-- Gericht 3 -->
+<div class="card">
+    <img src="https://images.unsplash.com/photo-1562967916-eb82221dfb36">
+    <div class="card-content">
+        <div class="title">Gebratener Reis mit Hähnchen</div>
+        <div class="desc">Reis mit Hähnchen, Ei und frischem Gemüse.</div>
+        <div class="price">5,90€</div>
+    </div>
 </div>
-
-<!-- SALATE -->
-<div class="section">
-<h2>🥗 Salate</h2>
-
-<div class="item"><span>Gemischter Salat</span><span class="price">3,80€</span></div>
-<div class="item"><span>Yam Pak</span><span class="price">3,90€</span></div>
-<div class="item"><span>Yam Nuea</span><span class="price">4,50€</span></div>
-<div class="item"><span>Lab Gai</span><span class="price">4,50€</span></div>
-
-</div>
-
-<!-- REIS & NUDEL -->
-<div class="section">
-<h2>🍚 Reis & Nudelgerichte</h2>
-
-<div class="item"><span>Gebratene Nudeln mit Hähnchen</span><span class="price">5,90€</span></div>
-<div class="item"><span>Gebratener Reis mit Hähnchen</span><span class="price">5,90€</span></div>
-<div class="item"><span>Pad Thai Garnelen</span><span class="price">6,90€</span></div>
-<div class="item"><span>Eiernudeln mit Ente</span><span class="price">8,90€</span></div>
-<div class="item"><span>Gebratener Reis Spezial</span><span class="price">8,90€</span></div>
-<div class="item"><span>Gebratener Reis mit Rind</span><span class="price">5,90€</span></div>
-<div class="item"><span>Gebratener Reis mit Ananas</span><span class="price">5,90€</span></div>
-
-</div>
-
-<!-- HÄHNCHEN -->
-<div class="section">
-<h2>🍗 Hähnchen</h2>
-
-<div class="item"><span>Gai Sam Rod</span><span class="price">7,90€</span></div>
-<div class="item"><span>Preow Wahn Gai</span><span class="price">6,90€</span></div>
-<div class="item"><span>Gai Pahd Prig</span><span class="price">6,90€</span></div>
-<div class="item"><span>Panang Gai</span><span class="price">6,90€</span></div>
-<div class="item"><span>Gai Kratiam</span><span class="price">6,90€</span></div>
-
-</div>
-
-<!-- RINDFLEISCH -->
-<div class="section">
-<h2>🥩 Rindfleisch</h2>
-
-<div class="item"><span>Nüa Pahd Tao Gnog</span><span class="price">7,90€</span></div>
-<div class="item"><span>Nüa Krapao</span><span class="price">7,90€</span></div>
-<div class="item"><span>Massaman Curry</span><span class="price">7,90€</span></div>
-
-</div>
-
-<!-- GARNELEN -->
-<div class="section">
-<h2>🍤 Garnelen</h2>
-
-<div class="item"><span>Thai Curry Garnelen</span><span class="price">9,90€</span></div>
-<div class="item"><span>Gebratene Garnelen</span><span class="price">9,90€</span></div>
-
-</div>
-
-<!-- FISCH -->
-<div class="section">
-<h2>🐟 Fisch</h2>
-
-<div class="item"><span>Fischfilet Thai Curry</span><span class="price">8,90€</span></div>
-<div class="item"><span>Fischfilet Ingwer</span><span class="price">8,90€</span></div>
-
-</div>
-
-<!-- NACHTISCH -->
-<div class="section">
-<h2>🍰 Nachtisch</h2>
-
-<div class="item"><span>Banane mit Honig</span><span class="price">2,60€</span></div>
-<div class="item"><span>Ananas mit Honig</span><span class="price">2,60€</span></div>
-<div class="item"><span>Apfel mit Honig</span><span class="price">2,60€</span></div>
 
 </div>
 
