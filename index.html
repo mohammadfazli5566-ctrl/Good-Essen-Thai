@@ -1,205 +1,853 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Good Essen Thai</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Good Essen Thai</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
 
-<style>
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background: #f4f4f4;
-}
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f5f5f5;
+      color: #222;
+    }
 
-header {
-    background: black;
-    color: white;
-    text-align: center;
-    padding: 20px;
-}
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
 
-header h1 {
-    color: orange;
-    margin: 0;
-}
+    header {
+      background: linear-gradient(135deg, #000 0%, #1a1a1a 100%);
+      color: white;
+      text-align: center;
+      padding: 28px 16px 20px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.18);
+    }
 
-.info {
-    text-align: center;
-    padding: 10px;
-    background: #fff;
-    font-size: 14px;
-}
+    header h1 {
+      margin: 0;
+      color: #ff9800;
+      font-size: 32px;
+      letter-spacing: 1px;
+    }
 
-.section {
-    padding: 15px;
-}
+    header p {
+      margin: 8px 0 0;
+      color: #f2f2f2;
+      font-size: 15px;
+    }
 
-.section h2 {
-    background: orange;
-    padding: 10px;
-    margin: 10px 0;
-}
+    .top-info {
+      background: white;
+      padding: 14px 16px;
+      text-align: center;
+      font-size: 14px;
+      line-height: 1.7;
+      border-bottom: 1px solid #e5e5e5;
+    }
 
-.card {
-    background: white;
-    margin-bottom: 15px;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-}
+    .hero {
+      background: url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1200&q=80') center/cover no-repeat;
+      min-height: 240px;
+      display: flex;
+      align-items: end;
+      justify-content: center;
+      position: relative;
+    }
 
-.card img {
-    width: 100%;
-    height: 180px;
-    object-fit: cover;
-}
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.45);
+    }
 
-.card-content {
-    padding: 10px;
-}
+    .hero-text {
+      position: relative;
+      z-index: 1;
+      color: white;
+      text-align: center;
+      padding: 24px 16px 30px;
+    }
 
-.title {
-    font-size: 18px;
-    font-weight: bold;
-}
+    .hero-text h2 {
+      margin: 0 0 8px;
+      font-size: 28px;
+    }
 
-.desc {
-    font-size: 14px;
-    color: #555;
-}
+    .hero-text p {
+      margin: 0;
+      font-size: 15px;
+      color: #f1f1f1;
+    }
 
-.price {
-    color: red;
-    font-weight: bold;
-    margin-top: 5px;
-}
-</style>
+    .nav-cats {
+      display: flex;
+      gap: 10px;
+      overflow-x: auto;
+      padding: 14px 12px;
+      background: #fff;
+      border-bottom: 1px solid #e8e8e8;
+      position: sticky;
+      top: 99px;
+      z-index: 999;
+    }
+
+    .nav-cats a {
+      white-space: nowrap;
+      background: #111;
+      color: white;
+      padding: 10px 14px;
+      border-radius: 999px;
+      font-size: 14px;
+      font-weight: bold;
+      flex: 0 0 auto;
+    }
+
+    .section {
+      padding: 18px 14px 8px;
+    }
+
+    .section h2 {
+      margin: 0 0 14px;
+      background: #ff9800;
+      color: #111;
+      padding: 12px 14px;
+      border-radius: 12px;
+      font-size: 22px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+    }
+
+    .card img {
+      width: 100%;
+      height: 210px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .card-content {
+      padding: 14px;
+    }
+
+    .dish-title {
+      font-size: 20px;
+      font-weight: bold;
+      margin-bottom: 8px;
+      color: #111;
+    }
+
+    .dish-desc {
+      font-size: 14px;
+      color: #555;
+      line-height: 1.55;
+      margin-bottom: 10px;
+    }
+
+    .dish-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .tag {
+      background: #fff3e0;
+      color: #e65100;
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: bold;
+    }
+
+    .price {
+      color: #d50000;
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    .footer {
+      background: #111;
+      color: white;
+      padding: 28px 16px;
+      text-align: center;
+      margin-top: 24px;
+    }
+
+    .footer h3 {
+      margin-top: 0;
+      color: #ff9800;
+    }
+
+    .footer p {
+      margin: 8px 0;
+      line-height: 1.7;
+    }
+
+    .btn-call {
+      display: inline-block;
+      margin-top: 14px;
+      background: #ff9800;
+      color: #111;
+      padding: 12px 18px;
+      border-radius: 999px;
+      font-weight: bold;
+    }
+
+    @media (min-width: 800px) {
+      .grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .hero {
+        min-height: 320px;
+      }
+
+      .hero-text h2 {
+        font-size: 38px;
+      }
+    }
+  </style>
 </head>
-
 <body>
 
-<header>
+  <header>
     <h1>Good Essen Thai</h1>
-    <p>Imbiss</p>
-</header>
+    <p>Thai Imbiss • Frische Gerichte • Digitale Speisekarte</p>
+  </header>
 
-<div class="info">
-📍 Sonnenwall 25, Duisburg<br>
-📞 0203-36980937<br>
-🕒 Mo–Sa: 11:30–21:00 | So: 16:00–21:00
-</div>
+  <div class="top-info">
+    📍 Sonnenwall 25, Duisburg<br>
+    📞 0203-36980937<br>
+    🕒 Mo–Sa: 11:30–21:00 | So: 16:00–21:00
+  </div>
 
-<!-- VORSPEISEN -->
-<div class="section">
-<h2>🥢 Vorspeisen</h2>
+  <section class="hero">
+    <div class="hero-text">
+      <h2>Willkommen bei Good Essen Thai</h2>
+      <p>Authentische Thai-Gerichte, frisch zubereitet und mit Liebe serviert.</p>
+    </div>
+  </section>
 
-<div class="card">
-<img src="https://images.unsplash.com/photo-1604908176997-4319c7f7ef7d">
-<div class="card-content">
-<div class="title">Frühlingsrollen</div>
-<div class="desc">Knusprige Rollen mit Gemüse oder Hähnchen, serviert mit süß-saurer Soße.</div>
-<div class="price">2,50€</div>
-</div>
-</div>
+  <nav class="nav-cats">
+    <a href="#vorspeisen">Vorspeisen</a>
+    <a href="#suppen">Suppen</a>
+    <a href="#salate">Salate</a>
+    <a href="#reisnudeln">Reis & Nudeln</a>
+    <a href="#huhn">Hähnchen</a>
+    <a href="#rind">Rind</a>
+    <a href="#garnelen">Garnelen</a>
+    <a href="#fisch">Fisch</a>
+    <a href="#dessert">Dessert</a>
+  </nav>
 
-<div class="card">
-<img src="https://images.unsplash.com/photo-1550547660-d9450f859349">
-<div class="card-content">
-<div class="title">Satay Spieße</div>
-<div class="desc">Gegrillte Hähnchenspieße mit cremiger Erdnusssauce.</div>
-<div class="price">2,50€</div>
-</div>
-</div>
+  <section class="section" id="vorspeisen">
+    <h2>🥢 Vorspeisen</h2>
+    <div class="grid">
 
-</div>
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=1200&q=80" alt="Sa Teh Gai">
+        <div class="card-content">
+          <div class="dish-title">Sa Teh Gai</div>
+          <div class="dish-desc">Zarte Hähnchenspieße vom Grill, serviert mit würziger Erdnusssauce. Ideal als aromatischer Einstieg.</div>
+          <div class="dish-meta">
+            <span class="tag">Hähnchen • Erdnuss</span>
+            <span class="price">2,50€</span>
+          </div>
+        </div>
+      </div>
 
-<!-- SUPPEN -->
-<div class="section">
-<h2>🍜 Suppen</h2>
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1608039755401-742074f0548d?auto=format&fit=crop&w=1200&q=80" alt="Gemüse Frühlingsrolle">
+        <div class="card-content">
+          <div class="dish-title">Gemüse Frühlingsrolle</div>
+          <div class="dish-desc">Knusprig gebackene Frühlingsrollen mit Gemüsefüllung, serviert mit süß-saurer Sauce.</div>
+          <div class="dish-meta">
+            <span class="tag">Vegetarisch</span>
+            <span class="price">2,20€</span>
+          </div>
+        </div>
+      </div>
 
-<div class="card">
-<img src="https://images.unsplash.com/photo-1562967916-eb82221dfb36">
-<div class="card-content">
-<div class="title">Tom Yam Goong</div>
-<div class="desc">Scharfe Garnelensuppe mit Zitronengras, Chili und Koriander.</div>
-<div class="price">3,90€</div>
-</div>
-</div>
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=1200&q=80" alt="Popia Thood">
+        <div class="card-content">
+          <div class="dish-title">Popia Thood</div>
+          <div class="dish-desc">Frittierte Thai-Röllchen, goldbraun und knusprig, mit fein gewürzter Füllung.</div>
+          <div class="dish-meta">
+            <span class="tag">Knusprig</span>
+            <span class="price">2,50€</span>
+          </div>
+        </div>
+      </div>
 
-<div class="card">
-<img src="https://images.unsplash.com/photo-1604908811717-3a03cfa2d2a3">
-<div class="card-content">
-<div class="title">Tom Kha Gai</div>
-<div class="desc">Milde Kokossuppe mit Hähnchen und Champignons.</div>
-<div class="price">2,90€</div>
-</div>
-</div>
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1563245372-f21724e3856d?auto=format&fit=crop&w=1200&q=80" alt="Wan Tan">
+        <div class="card-content">
+          <div class="dish-title">Wan Tan</div>
+          <div class="dish-desc">Knusprige Teigtaschen mit herzhafter Füllung, serviert mit Dip.</div>
+          <div class="dish-meta">
+            <span class="tag">Teigtaschen</span>
+            <span class="price">3,80€</span>
+          </div>
+        </div>
+      </div>
 
-</div>
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1515003197210-e0cd71810b5f?auto=format&fit=crop&w=1200&q=80" alt="Pak Chub Pang Thood">
+        <div class="card-content">
+          <div class="dish-title">Pak Chub Pang Thood</div>
+          <div class="dish-desc">Knusprig paniertes Gemüse, frisch frittiert und mit passender Sauce serviert.</div>
+          <div class="dish-meta">
+            <span class="tag">Gemüse</span>
+            <span class="price">3,50€</span>
+          </div>
+        </div>
+      </div>
 
-<!-- HAUPTGERICHTE -->
-<div class="section">
-<h2>🍛 Hauptgerichte</h2>
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1625944525533-473f1b3d54b3?auto=format&fit=crop&w=1200&q=80" alt="Gung Haom Pha">
+        <div class="card-content">
+          <div class="dish-title">Gung Haom Pha</div>
+          <div class="dish-desc">Garnelen im knusprigen Teigmantel, außen goldbraun und innen saftig.</div>
+          <div class="dish-meta">
+            <span class="tag">Garnelen</span>
+            <span class="price">3,50€</span>
+          </div>
+        </div>
+      </div>
 
-<div class="card">
-<img src="https://images.unsplash.com/photo-1617093727343-374698b1b08d">
-<div class="card-content">
-<div class="title">Pad Thai Garnelen</div>
-<div class="desc">Gebratene Reisnudeln mit Garnelen, Ei, Erdnüssen und Sojasprossen.</div>
-<div class="price">6,90€</div>
-</div>
-</div>
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1626082927389-6cd097cdc6ec?auto=format&fit=crop&w=1200&q=80" alt="Krabbenchips">
+        <div class="card-content">
+          <div class="dish-title">Krabbenchips</div>
+          <div class="dish-desc">Leicht, knusprig und beliebt als Snack oder Beilage vor dem Hauptgericht.</div>
+          <div class="dish-meta">
+            <span class="tag">Snack</span>
+            <span class="price">1,50€</span>
+          </div>
+        </div>
+      </div>
 
-<div class="card">
-<img src="https://images.unsplash.com/photo-1604908177522-472cfa1d65c1">
-<div class="card-content">
-<div class="title">Gebratener Reis mit Hähnchen</div>
-<div class="desc">Reis mit Hähnchen, Gemüse und Ei, typisch Thai gewürzt.</div>
-<div class="price">5,90€</div>
-</div>
-</div>
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?auto=format&fit=crop&w=1200&q=80" alt="Pu Thod">
+        <div class="card-content">
+          <div class="dish-title">Pu Thod</div>
+          <div class="dish-desc">Knusprig ausgebackene Spezialität mit würziger Füllung und leckerem Dip.</div>
+          <div class="dish-meta">
+            <span class="tag">Frittiert</span>
+            <span class="price">2,50€</span>
+          </div>
+        </div>
+      </div>
 
-<div class="card">
-<img src="https://images.unsplash.com/photo-1627308595229-7830a5c91f9f">
-<div class="card-content">
-<div class="title">Massaman Curry Rind</div>
-<div class="desc">Rindfleisch in cremigem Curry mit Kartoffeln und Erdnüssen.</div>
-<div class="price">7,90€</div>
-</div>
-</div>
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1603360946369-dc9bb6258143?auto=format&fit=crop&w=1200&q=80" alt="Nüa-Dad Deav">
+        <div class="card-content">
+          <div class="dish-title">Nüa-Dad Deav</div>
+          <div class="dish-desc">Mariniertes, zartes Rindfleisch mit kräftigem Aroma, perfekt als herzhafte Vorspeise.</div>
+          <div class="dish-meta">
+            <span class="tag">Rind</span>
+            <span class="price">3,50€</span>
+          </div>
+        </div>
+      </div>
 
-</div>
+    </div>
+  </section>
 
-<!-- GARNELEN -->
-<div class="section">
-<h2>🍤 Garnelen</h2>
+  <section class="section" id="suppen">
+    <h2>🍜 Suppen</h2>
+    <div class="grid">
 
-<div class="card">
-<img src="https://images.unsplash.com/photo-1589308078053-f0f1c4c41e38">
-<div class="card-content">
-<div class="title">Thai Curry Garnelen</div>
-<div class="desc">Garnelen in rotem Curry mit Kokosmilch und Gemüse.</div>
-<div class="price">9,90€</div>
-</div>
-</div>
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=1200&q=80" alt="Tom Yam Goong">
+        <div class="card-content">
+          <div class="dish-title">Tom Yam Goong</div>
+          <div class="dish-desc">Scharfe Thai-Garnelensuppe mit Zitronengras, Champignons, Limette und Koriander.</div>
+          <div class="dish-meta">
+            <span class="tag">Scharf • Garnelen</span>
+            <span class="price">3,90€</span>
+          </div>
+        </div>
+      </div>
 
-</div>
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1617093727343-374698b1b08d?auto=format&fit=crop&w=1200&q=80" alt="Tom Kha Gai">
+        <div class="card-content">
+          <div class="dish-title">Tom Kha Gai</div>
+          <div class="dish-desc">Milde Kokossuppe mit Hähnchen, Champignons und exotischen Gewürzen.</div>
+          <div class="dish-meta">
+            <span class="tag">Kokos • Hähnchen</span>
+            <span class="price">2,90€</span>
+          </div>
+        </div>
+      </div>
 
-<!-- NACHTISCH -->
-<div class="section">
-<h2>🍰 Nachtisch</h2>
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1603105037880-880cd4edfb0d?auto=format&fit=crop&w=1200&q=80" alt="Tai-Chi Suppe">
+        <div class="card-content">
+          <div class="dish-title">Tai-Chi Suppe</div>
+          <div class="dish-desc">Wärmende asiatische Suppe mit feiner Würze und ausgewogenen Aromen.</div>
+          <div class="dish-meta">
+            <span class="tag">Mild</span>
+            <span class="price">2,50€</span>
+          </div>
+        </div>
+      </div>
 
-<div class="card">
-<img src="https://images.unsplash.com/photo-1606313564200-e75d5e30476c">
-<div class="card-content">
-<div class="title">Banane mit Honig</div>
-<div class="desc">Frittierte Banane mit süßem Honig.</div>
-<div class="price">2,60€</div>
-</div>
-</div>
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1572453800999-e8d2d1589b7c?auto=format&fit=crop&w=1200&q=80" alt="Tom Yam Gai">
+        <div class="card-content">
+          <div class="dish-title">Tom Yam Gai</div>
+          <div class="dish-desc">Scharfe Suppe mit Hähnchen, Kräutern und frischer Limettennote.</div>
+          <div class="dish-meta">
+            <span class="tag">Scharf • Hähnchen</span>
+            <span class="price">2,90€</span>
+          </div>
+        </div>
+      </div>
 
-</div>
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1604152135912-04a579a2d24d?auto=format&fit=crop&w=1200&q=80" alt="Sauer-Scharfe Suppe">
+        <div class="card-content">
+          <div class="dish-title">Sauer-Scharfe Suppe</div>
+          <div class="dish-desc">Klassische asiatische Suppe mit würzig-säuerlichem Geschmack und angenehmer Schärfe.</div>
+          <div class="dish-meta">
+            <span class="tag">Sauer • Scharf</span>
+            <span class="price">1,80€</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1517244683847-7456b63c5969?auto=format&fit=crop&w=1200&q=80" alt="Wan Tan Suppe">
+        <div class="card-content">
+          <div class="dish-title">Wan Tan Suppe</div>
+          <div class="dish-desc">Klare Brühe mit gefüllten Teigtaschen und feiner asiatischer Würze.</div>
+          <div class="dish-meta">
+            <span class="tag">Teigtaschen</span>
+            <span class="price">2,50€</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1627308595229-7830a5c91f9f?auto=format&fit=crop&w=1200&q=80" alt="Vegetarische Tofu Suppe">
+        <div class="card-content">
+          <div class="dish-title">Vegetarische Tofu Suppe</div>
+          <div class="dish-desc">Leichte Suppe mit Tofu, Gemüse und sanften asiatischen Kräutern.</div>
+          <div class="dish-meta">
+            <span class="tag">Vegetarisch • Tofu</span>
+            <span class="price">2,50€</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1525755662778-989d0524087e?auto=format&fit=crop&w=1200&q=80" alt="Kung Fu Suppe">
+        <div class="card-content">
+          <div class="dish-title">Kung Fu Suppe</div>
+          <div class="dish-desc">Herzhafte Suppe mit kräftiger Würze und asiatischer Note.</div>
+          <div class="dish-meta">
+            <span class="tag">Würzig</span>
+            <span class="price">2,80€</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="section" id="salate">
+    <h2>🥗 Salate</h2>
+    <div class="grid">
+
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=1200&q=80" alt="Gemischter Salat">
+        <div class="card-content">
+          <div class="dish-title">Gemischter Salat</div>
+          <div class="dish-desc">Frischer Blattsalat mit knackigem Gemüse und leichtem Dressing.</div>
+          <div class="dish-meta">
+            <span class="tag">Frisch</span>
+            <span class="price">3,80€</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1546793665-c74683f339c1?auto=format&fit=crop&w=1200&q=80" alt="Yam Pak">
+        <div class="card-content">
+          <div class="dish-title">Yam Pak</div>
+          <div class="dish-desc">Würziger Thai-Gemüsesalat mit frischen Kräutern und leichter Schärfe.</div>
+          <div class="dish-meta">
+            <span class="tag">Thai-Salat</span>
+            <span class="price">3,90€</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?auto=format&fit=crop&w=1200&q=80" alt="Yam Nuea">
+        <div class="card-content">
+          <div class="dish-title">Yam Nuea</div>
+          <div class="dish-desc">Frischer Thai-Salat mit zartem Rindfleisch, Kräutern und pikantem Dressing.</div>
+          <div class="dish-meta">
+            <span class="tag">Rind • Pikant</span>
+            <span class="price">4,50€</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1516684732162-798a0062be99?auto=format&fit=crop&w=1200&q=80" alt="Lab Gai">
+        <div class="card-content">
+          <div class="dish-title">Lab Gai</div>
+          <div class="dish-desc">Würziger Hähnchensalat nach Thai-Art mit Kräutern und Limette.</div>
+          <div class="dish-meta">
+            <span class="tag">Hähnchen • Thai</span>
+            <span class="price">4,50€</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="section" id="reisnudeln">
+    <h2>🍚 Reis- & Nudelgerichte</h2>
+    <div class="grid">
+
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=1200&q=80" alt="Gebratene Nudeln mit Hähnchen">
+        <div class="card-content">
+          <div class="dish-title">Gebratene Nudeln mit Hähnchen</div>
+          <div class="dish-desc">Gebratene Nudeln mit Hähnchen, Ei, Gemüse und würziger Sauce.</div>
+          <div class="dish-meta">
+            <span class="tag">Nudeln • Hähnchen</span>
+            <span class="price">5,90€</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1515003197210-e0cd71810b5f?auto=format&fit=crop&w=1200&q=80" alt="Gebratener Reis mit Hähnchen">
+        <div class="card-content">
+          <div class="dish-title">Gebratener Reis mit Hähnchen</div>
+          <div class="dish-desc">Locker gebratener Reis mit Hähnchen, Gemüse und Ei.</div>
+          <div class="dish-meta">
+            <span class="tag">Reis • Hähnchen</span>
+            <span class="price">5,90€</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1559314809-0d155014e29e?auto=format&fit=crop&w=1200&q=80" alt="Pad Thai Garnelen">
+        <div class="card-content">
+          <div class="dish-title">Pad Thai Garnelen</div>
+          <div class="dish-desc">Gebratene Reisnudeln mit Garnelen, Ei, Sojasprossen und Erdnüssen.</div>
+          <div class="dish-meta">
+            <span class="tag">Pad Thai • Garnelen</span>
+            <span class="price">6,90€</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1617196039897-7b9d4d9f4b9e?auto=format&fit=crop&w=1200&q=80" alt="Eiernudeln mit Ente">
+        <div class="card-content">
+          <div class="dish-title">Eiernudeln mit Ente</div>
+          <div class="dish-desc">Gebratene Eiernudeln mit knuspriger Ente und asiatischem Gemüse.</div>
+          <div class="dish-meta">
+            <span class="tag">Ente • Eiernudeln</span>
+            <span class="price">8,90€</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1579871494447-9811cf80d66c?auto=format&fit=crop&w=1200&q=80" alt="Gebratener Reis Spezial">
+        <div class="card-content">
+          <div class="dish-title">Gebratener Reis Spezial</div>
+          <div class="dish-desc">Gebratener Reis mit gemischten Zutaten, asiatischem Gemüse und kräftiger Würze.</div>
+          <div class="dish-meta">
+            <span class="tag">Spezial</span>
+            <span class="price">8,90€</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=1200&q=80" alt="Gebratener Reis mit Rind">
+        <div class="card-content">
+          <div class="dish-title">Gebratener Reis mit Rind</div>
+          <div class="dish-desc">Aromatischer Reis mit zartem Rindfleisch, Ei und Gemüse.</div>
+          <div class="dish-meta">
+            <span class="tag">Reis • Rind</span>
+            <span class="price">5,90€</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1516684732162-798a0062be99?auto=format&fit=crop&w=1200&q=80" alt="Gebratener Reis mit Ananas">
+        <div class="card-content">
+          <div class="dish-title">Gebratener Reis mit Ananas</div>
+          <div class="dish-desc">Thai-Reisgericht mit fruchtiger Ananas, Gemüse und exotischer Würze.</div>
+          <div class="dish-meta">
+            <span class="tag">Ananas • Thai</span>
+            <span class="price">5,90€</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="section" id="huhn">
+    <h2>🍗 Hähnchengerichte</h2>
+    <div class="grid">
+
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1604908177522-472cfa1d65c1?auto=format&fit=crop&w=1200&q=80" alt="Gai Sam Rod">
+        <div class="card-content">
+          <div class="dish-title">Gai Sam Rod</div>
+          <div class="dish-desc">Knuspriges Hähnchen mit süß-saurer Thai-Sauce und frischem Gemüse.</div>
+          <div class="dish-meta">
+            <span class="tag">Süß-Sauer</span>
+            <span class="price">7,90€</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1603133872878-684f208fb84b?auto=format&fit=crop&w=1200&q=80" alt="Preow Wahn Gai">
+        <div class="card-content">
+          <div class="dish-title">Preow Wahn Gai</div>
+          <div class="dish-desc">Hähnchen mit süß-saurer Sauce, Paprika, Zwiebeln und Ananas.</div>
+          <div class="dish-meta">
+            <span class="tag">Hähnchen • Fruchtig</span>
+            <span class="price">6,90€</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1596797038530-2c107aa4e1fa?auto=format&fit=crop&w=1200&q=80" alt="Gai Pahd Prig">
+        <div class="card-content">
+          <div class="dish-title">Gai Pahd Prig</div>
+          <div class="dish-desc">Gebratenes Hähnchen mit Chili, Gemüse und kräftiger Thai-Würze.</div>
+          <div class="dish-meta">
+            <span class="tag">Scharf</span>
+            <span class="price">6,90€</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1455619452474-d2be8b1e70cd?auto=format&fit=crop&w=1200&q=80" alt="Panang Gai">
+        <div class="card-content">
+          <div class="dish-title">Panang Gai</div>
+          <div class="dish-desc">Hähnchen in cremigem Panang-Curry mit Kokosmilch und Thai-Kräutern.</div>
+          <div class="dish-meta">
+            <span class="tag">Curry • Kokos</span>
+            <span class="price">6,90€</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1603894584373-5ac82b2ae398?auto=format&fit=crop&w=1200&q=80" alt="Gai Kratiam">
+        <div class="card-content">
+          <div class="dish-title">Gai Kratiam</div>
+          <div class="dish-desc">Hähnchen mit Knoblauch, Pfeffer und aromatischer Sauce, dazu Gemüse.</div>
+          <div class="dish-meta">
+            <span class="tag">Knoblauch</span>
+            <span class="price">6,90€</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="section" id="rind">
+    <h2>🥩 Rindfleischgerichte</h2>
+    <div class="grid">
+
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=1200&q=80" alt="Nüa Pahd Tao Gnog">
+        <div class="card-content">
+          <div class="dish-title">Nüa Pahd Tao Gnog</div>
+          <div class="dish-desc">Gebratenes Rindfleisch mit Gemüse und typisch würziger Thai-Sauce.</div>
+          <div class="dish-meta">
+            <span class="tag">Rind • Gemüse</span>
+            <span class="price">7,90€</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1603360946369-dc9bb6258143?auto=format&fit=crop&w=1200&q=80" alt="Nüa Krapao">
+        <div class="card-content">
+          <div class="dish-title">Nüa Krapao</div>
+          <div class="dish-desc">Rindfleisch mit Thai-Basilikum, Chili und Gemüse – intensiv und aromatisch.</div>
+          <div class="dish-meta">
+            <span class="tag">Basilikum • Scharf</span>
+            <span class="price">7,90€</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1627308595229-7830a5c91f9f?auto=format&fit=crop&w=1200&q=80" alt="Massaman Curry">
+        <div class="card-content">
+          <div class="dish-title">Massaman Curry</div>
+          <div class="dish-desc">Cremiges Curry mit Rindfleisch, Kartoffeln, Kokosmilch und Erdnüssen.</div>
+          <div class="dish-meta">
+            <span class="tag">Curry • Rind</span>
+            <span class="price">7,90€</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="section" id="garnelen">
+    <h2>🍤 Garnelen</h2>
+    <div class="grid">
+
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1563379091339-03246963d51a?auto=format&fit=crop&w=1200&q=80" alt="Thai Curry Garnelen">
+        <div class="card-content">
+          <div class="dish-title">Thai Curry Garnelen</div>
+          <div class="dish-desc">Saftige Garnelen in rotem Thai-Curry mit Kokosmilch und Gemüse.</div>
+          <div class="dish-meta">
+            <span class="tag">Curry • Garnelen</span>
+            <span class="price">9,90€</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1625944525533-473f1b3d54b3?auto=format&fit=crop&w=1200&q=80" alt="Gebratene Garnelen">
+        <div class="card-content">
+          <div class="dish-title">Gebratene Garnelen</div>
+          <div class="dish-desc">Frisch gebratene Garnelen mit Gemüse, Knoblauch und feiner asiatischer Sauce.</div>
+          <div class="dish-meta">
+            <span class="tag">Gebraten</span>
+            <span class="price">9,90€</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="section" id="fisch">
+    <h2>🐟 Fischgerichte</h2>
+    <div class="grid">
+
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?auto=format&fit=crop&w=1200&q=80" alt="Fischfilet Thai Curry">
+        <div class="card-content">
+          <div class="dish-title">Fischfilet Thai Curry</div>
+          <div class="dish-desc">Zartes Fischfilet in Thai-Curry mit Gemüse und cremiger Kokosnote.</div>
+          <div class="dish-meta">
+            <span class="tag">Fisch • Curry</span>
+            <span class="price">8,90€</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1559847844-5315695dadae?auto=format&fit=crop&w=1200&q=80" alt="Fischfilet Ingwer">
+        <div class="card-content">
+          <div class="dish-title">Fischfilet Ingwer</div>
+          <div class="dish-desc">Gebratenes Fischfilet mit frischem Ingwer, Gemüse und aromatischer Sauce.</div>
+          <div class="dish-meta">
+            <span class="tag">Ingwer • Fisch</span>
+            <span class="price">8,90€</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="section" id="dessert">
+    <h2>🍰 Nachtisch</h2>
+    <div class="grid">
+
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=1200&q=80" alt="Banane mit Honig">
+        <div class="card-content">
+          <div class="dish-title">Banane mit Honig</div>
+          <div class="dish-desc">Süßer Abschluss mit Banane und feinem Honig.</div>
+          <div class="dish-meta">
+            <span class="tag">Süß</span>
+            <span class="price">2,60€</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1551024601-bec78aea704b?auto=format&fit=crop&w=1200&q=80" alt="Ananas mit Honig">
+        <div class="card-content">
+          <div class="dish-title">Ananas mit Honig</div>
+          <div class="dish-desc">Fruchtige Ananas mit Honig – leicht, süß und erfrischend.</div>
+          <div class="dish-meta">
+            <span class="tag">Fruchtig</span>
+            <span class="price">2,60€</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1560807707-8cc77767d783?auto=format&fit=crop&w=1200&q=80" alt="Apfel mit Honig">
+        <div class="card-content">
+          <div class="dish-title">Apfel mit Honig</div>
+          <div class="dish-desc">Apfel als süße Nachspeise mit feiner Honignote.</div>
+          <div class="dish-meta">
+            <span class="tag">Dessert</span>
+            <span class="price">2,60€</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <footer class="footer">
+    <h3>Good Essen Thai</h3>
+    <p>📍 Sonnenwall 25, Duisburg</p>
+    <p>📞 0203-36980937</p>
+    <p>🕒 Mo–Sa: 11:30–21:00 | So: 16:00–21:00</p>
+    <a class="btn-call" href="tel:020336980937">Jetzt anrufen</a>
+  </footer>
 
 </body>
 </html>
